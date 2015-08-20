@@ -1,0 +1,34 @@
+{
+  "name": "adventures-in-tdd",
+  "version": "1.0.0",
+  "description": "Hands-on tutorial accompanying \"Adventures in Test-Driven Development\" presentation.",
+  "main": "src/blind.js",
+  "scripts": {
+    "test": "karma start --singleRun=true --autoWatch=false"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lund0n/adventures-in-tdd.git"
+  },
+  "keywords": [
+    "tdd",
+    "javascript",
+    "training",
+    "tutorial"
+  ],
+  "author": "Jeremy Lund <jeremy.r.lund@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lund0n/adventures-in-tdd/issues"
+  },
+  "homepage": "https://github.com/lund0n/adventures-in-tdd#readme",
+  "devDependencies": {
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.9",
+    "karma-clear-screen-reporter": "0.0.1",
+    "karma-coverage": "^0.5.0",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-jasmine": "^0.3.6"
+  }
+}
