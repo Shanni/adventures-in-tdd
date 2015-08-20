@@ -13,6 +13,7 @@ Since the code was develop in a TDD fashion, and the presentation is about the p
 * Checkout this repository
 * run `npm install -g karma-cli`
 * run `npm install`
+* run `git checkout tdd-start`
 
 ## Working Through the Tutorial
 
@@ -35,12 +36,12 @@ It would be nice if we could take a DOM node out of the HTML like this:
 </div>
 ```
 
-And then simply call `blind(element)` on DOM node to create the blind.
-Let's consider sample HTML element, plus the function call, to be our interface.
+And then simply call `blind(element)` on the DOM node to create the blind.
+Let's consider the sample HTML element, plus the function call, to be our interface.
 You can also look at `index.html` in the repository to see an example of several blinds that will function once our implementation is completed.
 
 Now that we have an idea of how it should work, let's think about what tests should be in punch list.
-A punch list is the collection of tests that we need to complete in order to consider our feature complete.
+A punch list is a collection of tests that we need to complete in order to consider our feature complete.
 In considering the feature, here are the first tests that I am going to start with:
 
 1. it should have blind defined.
@@ -65,8 +66,8 @@ describe('A blind component', function() {
 ```
 
 Karma will detect that we created a file containing tests, and execute the tests.
-Of course, there is still an error, as Karma will report that all three tests were skipped.
-This is because we have not added a test function to any of the three tests.
+Of course, there is still an error, as Karma will report that all four tests were skipped.
+This is because we have not added a test function to any of the four tests.
 I use the list of skipped tests as an indicator of how many tests I have left to complete and implement in order to finish the feature.
 
 ## Defining the Component
@@ -93,7 +94,7 @@ The test now passes. You may think that this test was too simple, and you may be
 
 ## Accepting an Element
 
-Another simple test to implement now would be that the function accepts an Element. Complete the test body for that test as follows:
+Another simple test to implement now would be that the function accepts an Element. Complete the test body as follows:
 
 ```js
 it('should require an element parameter', function() {
@@ -103,7 +104,7 @@ it('should require an element parameter', function() {
 });
 ```
 
-The `.toThrowError` matcher expects to evaluate a function reference, rather than a function call, so we use `.bind` to specify the function
+The `.toThrowError()` matcher expects to evaluate a function reference, rather than a function call, so we use `.bind` to specify the function
 argument for the first test. Passing this test is a little more work than the first, but not bad:
 
 ```js
@@ -120,7 +121,7 @@ With another simple test completed, let's move on.
 
 Let's move on to the next test: "it should create the container".
 In our initial test list, we determined that we will probably need a container to hold the blind component.
-What should that look like?
+What should the container look like?
 
 For this implementation, I determine that I will use [BEM](https://en.bem.info/method/naming-convention/), or Block-Element-Modifier notation, to define the markup for the component.
 This way, I can easily identify the pieces of the component, and the various states of the component (open and closed) simply become classes on an element.
@@ -136,14 +137,14 @@ it('should return an element', function() {
 });
 ```
 
-And, of course, we get a failure. Let's add the minimum amount of code to get this test to pass to `blind.js`:
+And, of course, we get a failure. Let's add the minimum amount of code to `blind.js` to get this test to pass:
 
 ```js
 window.blind = function(element) {
   if(!(element instanceof Element)) {
     throw new TypeError('an element is required');
   }
-  return document.createElement('div');
+  return document.createElement('div'); // add this line
 };
 ```
 
@@ -175,13 +176,13 @@ window.blind = function (element) {
 And, the tests all pass again. Note so far that:
 
 * Each test that we perform should represent a small step towards the finished product.
-* The tests should be run frequently.
-* The changes that are required in the source code to make the test pass should be relatively small.
+* The tests should be executed frequently.
+* The changes that are required in the source code to make a test pass should be relatively small.
 
 ## A Minor Refactor
 
-We introduced a little bit of duplication in the last test. Both tests, create a `srcElement`, and execute `window.blind()` with that
-element. Let's refactor the duplication now. Refactoring can be done on both tests as well as our source code.
+We introduced a little bit of duplication in the last test. Both tests create a `srcElement`, and execute `window.blind()` with that
+element. Let's refactor out the duplication now. Refactoring can be done on tests as well as source code.
 
 To do this, we're going to surround all of our tests, except for "should have blind defined" and "should require an element parameter",
 with a `describe()` function. This will allow us to create a `beforeEach()` function that will create the element and call the function
@@ -311,8 +312,7 @@ beforeEach(function() {
 });
 ```
 
-This test is a little bit different--we finally have a test that needs to work with a source element.
-We create a simple element to drive the test, and place the title attribute on it. Now, let's make the test pass:
+Now, let's make the test pass:
 
 ```js
 window.blind = function (element) {
@@ -349,7 +349,7 @@ The test passes if that source element is the child node of our blind content co
 
 ## Opening and closing the blinds
 
-Finally, one more test left on the list. Of course, it won't stay that way for long.
+Finally, one more test left on the list. Of course, it won't stay that way for very long.
 In order to test opening the panel on click, we should probably verify that it's closed initially.
 
 Let's add the following test:
