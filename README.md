@@ -1,7 +1,9 @@
 # Adventures in Test-Driven Development (TDD)
 
 This repository contains the supporting materials and hands-on material for going through the "Adventures in Test-Driven Development" presentation.
-A recording of this presentation can be found [here](https://youtu.be/qZ2Nas4HFwA).
+
+* [Midwest JS 2015 video](https://youtu.be/qZ2Nas4HFwA).
+* [Slide deck](https://docs.google.com/presentation/d/1fe888lMobdAMi_D-ziMGOhbbvxv_XbXQ3XJ4eEoq078/edit?usp=sharing)
 
 NOTE: There are some variations between the contents of this repository and the code presented at the Midwest JS recording.
 Since the code was develop in a TDD fashion, and the presentation is about the process, the results can vary each time a feature is built using TDD.
